@@ -122,5 +122,15 @@ Issue3 を開き [Create a pull request] から master ブランチへのプル�
 #### ビルドパイプラインを確認する
 Issue2 にて作成した Pipelines にアクセスし、プルリクエストのマージをトリガーとしたビルドパイプラインが自動実行されたことを確認する。
 
-ビルドパイプラインにてエラーが発生した場合は必要な修正を行うこと。  
-ビルドパイプラインの成功を確認したら Issue を Done に動かすこと。
+ビルドパイプラインにてエラーが発生した場合は必要な修正を行うこと。
+
+### 成果物の確認
+Issue2 と同様に、ビルドパイプラインから [RazorPagesMovie.zip] をダウンロードし、展開する。  
+アプリケーションを実行し変更が正しく反映されていることを確認したら Issue を Done に動かすこと。
+
+## チーム開発
+複数人での DevOps を体験するために複数人のチームを組み、一人の Organization に他のメンバーを招待し、本ハンズオンを再度実施してみる。
+
+## より本格的に Azure DevOps を使ってみる
+[Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/) を使用して、自身の Organization にデモデータを作成してみる。  
+Boards, Repos, Pipelines にどのようなデータや定義が用意されているかを確認する。
