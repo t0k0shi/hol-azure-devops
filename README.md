@@ -49,3 +49,38 @@ https://github.com/alterbooth/hol-aspnetcore-sample.git
 ![04.png](./images/04.png)
 
 インポートに成功したら Issue を Done に動かすこと。
+
+## Issue2 : パイプラインの作成
+### チケットの作成
+Boards のカンバンにアクセスし、下記の Issue を作成する。
+
+- 列 : `To Do`
+- タイトル : `ビルドパイプラインを作成する`
+- アサイン : 自分
+
+### 作業の開始
+先ほど作成した Issue を Doing に動かす。  
+Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラインを作成する。
+
+1. [New pipeline] をクリックする
+1. [Use the classic editor] をクリックする
+1. インポートしたリポジトリをソースに指定する
+1. テンプレートは選ばず [Empty job] をクリックする
+1. [Agent job 1] に下記のタスクを追加する
+    - `dotnet restore`
+        - Path to project : `**/*.csproj`
+    - `dotnet build`
+        - Path to project : `**/*.csproj`
+        - Arguments : `--configuration Release`
+    - `dotnet publish`
+        - Arguments : `--configuration Release --output $(build.artifactstagingdirectory) -r win-x64 --self-contained true`
+    - Publish build artifacts
+        - 設定変更不要
+1. master ブランチへのプッシュをトリガーとする
+    - [Triggers] > [Enable continuous integration]
+1. パイプラインを保存する
+    - [Save & queue] > [save]
+1. [Queue] をクリックしパイプラインを手動実行する
+1. ビルドパイプラインが成功したことを確認する
+
+![05.png](./images/05.png)
