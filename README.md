@@ -128,6 +128,45 @@ Issue2 にて作成した Pipelines にアクセスし、プルリクエスト�
 Issue2 と同様に、ビルドパイプラインから [RazorPagesMovie.zip] をダウンロードし、展開する。  
 アプリケーションを実行し変更が正しく反映されていることを確認したら Issue を Done に動かすこと。
 
+## Issue4 : 自動リリースの構成
+### チケットの作成
+Boards のカンバンにアクセスし、下記の Issue を作成する。
+
+- 列 : `To Do`
+- タイトル : `Azure Web Appにデプロイする`
+- アサイン : 自分
+
+### 作業の開始
+先ほど作成した Issue を Doing に動かす。
+
+#### （オプション）Azure サブスクリプションへのユーザー追加
+Azure サブスクリプションに紐付けられていない Microsoft アカウントの場合、下記のドキュメントを参考に Azure サブスクリプションへの紐付けを行う。  
+[Troubleshoot Azure Resource Manager service connections - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/release/azure-rm-endpoint?view=azure-devops#the-user-has-only-guest-permission-in-the-directory)
+
+#### Azure Web App リソースの作成
+[Azure ポータル](https://portal.azure.com/)にサインインし Web App リソースを作成する。  
+このときランタイムスタックに `.NET Core 2.2` を、オペレーティングシステムに `Windows` を選択する。  
+リソースの完成後に Web アプリケーションにアクセスできることを確認する。
+
+#### Azure サブスクリプションの構成
+下記のドキュメントを参考に、自身の Azure サブスクリプションの接続情報をプロジェクトに構成する。  
+[Connect to Microsoft Azure - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/library/connect-to-azure?view=azure-devops)
+
+#### リリースパイプラインの作成
+Pipelines > Release にてパイプラインの新規作成にて `Azure App Service deployment` を選択する。  
+デプロイ対象(Artifacts)に先ほど作成したビルドパイプラインを選択する。  
+ビルドパイプラインの成功をトリガーとして、リリースパイプラインを実行する設定を行う。
+
+![07.png](./images/07.png)
+
+リリースジョブの構成にて下記の設定を行う。  
+- Azure subscription : 先程構成したサブスクリプション
+- App Service name : 先程作成した Azure Web App
+
+#### リリースパイプラインの実行
+先程作成したリリースパイプラインを Git リポジトリへのコミットまたは手動にて実行する。  
+指定した Azure Web App にアプリケーションが正しくデプロイされていることを確認し Issue を Done に動かすこと。
+
 ## チーム開発
 複数人での DevOps を体験するために複数人のチームを組み、一人の Organization に他のメンバーを招待し、本ハンズオンを再度実施してみる。
 
