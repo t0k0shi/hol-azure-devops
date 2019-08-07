@@ -1,7 +1,12 @@
 # Azure DevOps を使用したハンズオン
 ## 事前準備
+### Microsoft アカウントの取得
 下記のページを参考に Microsoft アカウントを作成すること。  
 [新しい Microsoft アカウントを作成する方法](https://support.microsoft.com/ja-jp/help/4026324/microsoft-account-how-to-create)
+
+### Azure サブスクリプションへのユーザー追加
+Azure サブスクリプションに紐付けられていない Microsoft アカウントの場合、下記のドキュメントを参考に Azure サブスクリプションへの紐付けを行うこと。  
+[Troubleshoot Azure Resource Manager service connections - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/release/azure-rm-endpoint?view=azure-devops#the-user-has-only-guest-permission-in-the-directory)
 
 ## Azure DevOps とは
 [Azure DevOps Services | Microsoft Azure](https://azure.microsoft.com/ja-jp/services/devops/)
@@ -139,20 +144,18 @@ Boards のカンバンにアクセスし、下記の Issue を作成する。
 ### 作業の開始
 先ほど作成した Issue を Doing に動かす。
 
-#### （オプション）Azure サブスクリプションへのユーザー追加
-Azure サブスクリプションに紐付けられていない Microsoft アカウントの場合、下記のドキュメントを参考に Azure サブスクリプションへの紐付けを行う。  
-[Troubleshoot Azure Resource Manager service connections - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/release/azure-rm-endpoint?view=azure-devops#the-user-has-only-guest-permission-in-the-directory)
-
 #### Azure Web App リソースの作成
 [Azure ポータル](https://portal.azure.com/)にサインインし Web App リソースを作成する。  
-このときランタイムスタックに `.NET Core 2.2` を、オペレーティングシステムに `Windows` を選択する。  
-リソースの完成後に Web アプリケーションにアクセスできることを確認する。
+このときランタイムスタックに `.NET Core 2.2` を、オペレーティングシステムに `Windows` を、 SKU に `F1` を選択する。  
+リソースの完成後に Web App にアクセスできることを確認する。
 
 #### Azure サブスクリプションの構成
 下記のドキュメントを参考に、自身の Azure サブスクリプションの接続情報をプロジェクトに構成する。  
 [Connect to Microsoft Azure - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/library/connect-to-azure?view=azure-devops)
 
 #### リリースパイプラインの作成
+[Deploy an Azure Web App - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/targets/webapp?view=azure-devops&tabs=classic)
+
 Pipelines > Release にてパイプラインの新規作成にて `Azure App Service deployment` を選択する。  
 デプロイ対象(Artifacts)に先ほど作成したビルドパイプラインを選択する。  
 ビルドパイプラインの成功をトリガーとして、リリースパイプラインを実行する設定を行う。
@@ -173,3 +176,6 @@ Pipelines > Release にてパイプラインの新規作成にて `Azure App Ser
 ## より本格的に Azure DevOps を使ってみる
 [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/) を使用して、自身の Organization にデモデータを作成してみる。  
 Boards, Repos, Pipelines にどのようなデータや定義が用意されているかを確認する。
+
+## 後片付け
+ハンズオンで作成した Azure Web App を含むリソースグループを削除する。
