@@ -12,24 +12,29 @@
 入力項目はユニークである必要があるためチェックマークがつく内容を入力する必要がある。  
 [Quickstart: Create a CI/CD pipeline for .NET with Azure DevOps Projects | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops-project/azure-devops-project-aspnet-core)
 
-![08.png](./images/08.png)
+![01.png](./images/01.png)
 
 Azure DevOps Projects リソースが作成できたらメニューの [すべてのリソース] から [DevOps Project] という種類のリソースを選択する。  
 サンプルのソースコードを用いた各種パイプラインや Web サーバーが構築されるため、作成された Web ページにアクセスしてみる。
 
-![09.png](./images/09.png)
+![02.png](./images/02.png)
 
-## プロジェクトの作成
-下記の構成でプロジェクトを作成する。
+## 独自のプロジェクトの作成
+下記の構成で Azure DevOps Projects リソースを作成する。
 
-- Project name : `hol-azure-devops`
-- Visibility : Private
-- Advanced
-    - Version control : Git
-    - Work item process : Basic
+- Bring your own code
+- Code repository : Other Git
+    - Repository URL : https://github.com/alterbooth/hol-aspnetcore-sample.git
+    - Branch : master
+    - Private repository : No
+- Is app Dockerized : No
+- Select application framework : ASP.NET Core
+- Windows Web App
+- 上記以外の項目はチェックマークがつく内容を入力すること
 
 ### 設定の確認
-作成したプロジェクトの設定にて下記の機能が有効になっていることを確認する。
+作成した Azure DevOps Projects リソースに移り [Project homepage] から Azure DevOps にアクセスする。  
+プロジェクトの設定にて下記の機能が有効になっていることを確認する。
 
 - Boards
 - Repos
@@ -145,31 +150,7 @@ Boards のカンバンにアクセスし、下記の Issue を作成する。
 ### 作業の開始
 先ほど作成した Issue を Doing に動かす。
 
-#### Azure Web App リソースの作成
-[Azure ポータル](https://portal.azure.com/)にサインインし Web App リソースを作成する。  
-このときランタイムスタックに `.NET Core 2.2` を、オペレーティングシステムに `Windows` を、 SKU に `F1` を選択する。  
-リソースの完成後に Web App にアクセスできることを確認する。
-
-#### Azure サブスクリプションの構成
-下記のドキュメントを参考に、自身の Azure サブスクリプションの接続情報をプロジェクトに構成する。  
-[Connect to Microsoft Azure - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/library/connect-to-azure?view=azure-devops)
-
-#### リリースパイプラインの作成
-[Deploy an Azure Web App - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/targets/webapp?view=azure-devops&tabs=classic)
-
-Pipelines > Release にてパイプラインの新規作成にて `Azure App Service deployment` を選択する。  
-デプロイ対象(Artifacts)に先ほど作成したビルドパイプラインを選択する。  
-ビルドパイプラインの成功をトリガーとして、リリースパイプラインを実行する設定を行う。
-
-![07.png](./images/07.png)
-
-リリースジョブの構成にて下記の設定を行う。  
-- Azure subscription : 先程構成したサブスクリプション
-- App Service name : 先程作成した Azure Web App
-
-#### リリースパイプラインの実行
-先程作成したリリースパイプラインを Git リポジトリへのコミットまたは手動にて実行する。  
-指定した Azure Web App にアプリケーションが正しくデプロイされていることを確認し Issue を Done に動かすこと。
+(TBW)
 
 ## チーム開発
 複数人での DevOps を体験するために複数人のチームを組み、一人の Organization に他のメンバーを招待し、本ハンズオンを再度実施してみる。
