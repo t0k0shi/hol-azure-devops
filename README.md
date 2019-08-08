@@ -10,12 +10,12 @@
 
 下記のドキュメントを参考に Azure DevOps Projects リソースを作成する。  
 入力項目はユニークである必要があるためチェックマークがつく内容を入力する必要がある。  
-[Quickstart: Create a CI/CD pipeline for .NET with Azure DevOps Projects | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops-project/azure-devops-project-aspnet-core)
+[クイック スタート:Azure DevOps Projects を使用して .NET 用 CI/CD パイプラインを作成する | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops-project/azure-devops-project-aspnet-core)  
+※「Azure DevOps と Azure サブスクリプションを構成する」までを行う。
 
 ![01.png](./images/01.png)
 
-Azure DevOps Projects リソースが作成できたらメニューの [すべてのリソース] から [DevOps Project] という種類のリソースを選択する。  
-サンプルのソースコードを用いた各種パイプラインや Web サーバーが構築されるため、作成された Web ページにアクセスしてみる。
+作成された Azure DevOps Projects リソースでは、サンプルのソースコードを用いた各種パイプラインや Web サーバーが構築されるため、 Web ページにアクセスし表示を確認する。
 
 ![02.png](./images/02.png)
 
@@ -77,14 +77,14 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 1. [Use the classic editor] をクリックする
 1. インポートしたリポジトリをソースに指定する
 1. テンプレートは選ばず [Empty job] をクリックする
-1. [Agent job 1] に下記のタスクを追加する
+1. 下記のタスクを追加する
     - `dotnet restore`
         - Path to project : `**/*.csproj`
     - `dotnet build`
         - Path to project : `**/*.csproj`
         - Arguments : `--configuration Release`
     - `dotnet publish`
-        - Arguments : `--configuration Release --output $(build.artifactstagingdirectory) -r win-x86,win-x64 --self-contained true`
+        - Arguments : `--configuration Release --output $(build.artifactstagingdirectory) -r win-x86 --self-contained true`
     - Publish build artifacts
         - 設定変更不要
 1. master ブランチへのプッシュをトリガーとする
@@ -97,12 +97,12 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 ![05.png](./images/05.png)
 
 ### 成果物の確認
-成功したビルドパイプラインの結果にアクセスし [Artifacts] > [drop] > [RazorPagesMovie.zip] をダウンロードする。
+成功したビルドパイプラインの結果にアクセスし Artifacts から Zip ファイルをダウンロードする。
 
 ![06.png](./images/06.png)
 
-ダウンロードしたZipファイルを展開し `RazorPagesMovie.exe` を実行する。  
-Webサーバーが起動するため `http://localhost:5000/movies` にアクセスし、データの参照や登録ができることを確認する。
+ダウンロードしたZipファイルを展開し `RazorPagesMovie.exe` を実行すると Web サーバーが起動する。  
+`http://localhost:5000/movies` にアクセスし、データの参照や登録ができることを確認する。
 
 アプリケーションの動作確認を行ったら Issue を Done に動かすこと。
 
@@ -126,17 +126,16 @@ Issue を開き [Create a new branch] からブランチを作成する。
 
 #### プルリクエストを作成する
 Issue3 を開き [Create a pull request] から master ブランチへのプルリクエストを作成する。  
-このとき Reviewers に自分を指定すること。
+このとき自分をレビューアーに指定すること。
 
-プルリクエストにて差分の確認を行い Approve および Complete でマージを実行する。
+プルリクエストにて差分の確認を行い、承認およびマージを実行する。
 
 #### ビルドパイプラインを確認する
-Issue2 にて作成した Pipelines にアクセスし、プルリクエストのマージをトリガーとしたビルドパイプラインが自動実行されたことを確認する。
-
+Issue2 にて作成したパイプラインにアクセスし、プルリクエストのマージをトリガーとしたビルドパイプラインが自動実行されたことを確認する。  
 ビルドパイプラインにてエラーが発生した場合は必要な修正を行うこと。
 
 ### 成果物の確認
-Issue2 と同様に、ビルドパイプラインから [RazorPagesMovie.zip] をダウンロードし、展開する。  
+Issue2 と同様に、ビルドパイプラインから Zip ファイルをダウンロードし、展開する。  
 アプリケーションを実行し変更が正しく反映されていることを確認したら Issue を Done に動かすこと。
 
 ## Issue4 : 自動リリースの構成
@@ -166,4 +165,4 @@ Stage のタスクにてデプロイ先となる Azure サブスクリプショ�
 Boards, Repos, Pipelines にどのようなデータや定義が用意されているかを確認する。
 
 ## 後片付け
-ハンズオンで作成した Azure Web App を含むリソースグループを削除する。
+ハンズオンで作成した全てのリソースグループを削除する。
