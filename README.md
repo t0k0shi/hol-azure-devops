@@ -1,22 +1,23 @@
 # Azure DevOps を使用したハンズオン
-## 事前準備
-### Microsoft アカウントの取得
-下記のページを参考に Microsoft アカウントを作成すること。  
-[新しい Microsoft アカウントを作成する方法](https://support.microsoft.com/ja-jp/help/4026324/microsoft-account-how-to-create)
-
-### Azure サブスクリプションへのユーザー追加
-Azure サブスクリプションに紐付けられていない Microsoft アカウントの場合、下記のドキュメントを参考に Azure サブスクリプションへの紐付けを行うこと。  
-[Troubleshoot Azure Resource Manager service connections - Azure Pipelines | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops/pipelines/release/azure-rm-endpoint?view=azure-devops#the-user-has-only-guest-permission-in-the-directory)
-
 ## Azure DevOps とは
 [Azure DevOps Services | Microsoft Azure](https://azure.microsoft.com/ja-jp/services/devops/)
 
-## Azure DevOps アカウントの取得
-[Azure DevOps Services | Microsoft Azure](https://azure.microsoft.com/ja-jp/services/devops/) にアクセスし「無料で始める」から Azure DevOps アカウントの取得する。  
-![01.png](./images/01.png)  
-![02.png](./images/02.png)
+## Azure DevOps Projects リソースの作成
+**まずはサンプルのプロジェクトを作ってみましょう。**
 
-Azure DevOps アカウントを取得すると自動的に組織（Organization）が作成される。
+[Microsoft Azure ポータル](https://portal.azure.com/)にサインインする。  
+このときハンズオンで使用するメールアドレスおよびパスワードでサインインすること。
+
+下記のドキュメントを参考に Azure DevOps Projects リソースを作成する。  
+入力項目はユニークである必要があるためチェックマークがつく内容を入力する必要がある。  
+[Quickstart: Create a CI/CD pipeline for .NET with Azure DevOps Projects | Microsoft Docs](https://docs.microsoft.com/en-us/azure/devops-project/azure-devops-project-aspnet-core)
+
+![08.png](./images/08.png)
+
+Azure DevOps Projects リソースが作成できたらメニューの [すべてのリソース] から [DevOps Project] という種類のリソースを選択する。  
+サンプルのソースコードを用いた各種パイプラインや Web サーバーが構築されるため、作成された Web ページにアクセスしてみる。
+
+![09.png](./images/09.png)
 
 ## プロジェクトの作成
 下記の構成でプロジェクトを作成する。
