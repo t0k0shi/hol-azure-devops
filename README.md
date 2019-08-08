@@ -150,7 +150,13 @@ Boards のカンバンにアクセスし、下記の Issue を作成する。
 ### 作業の開始
 先ほど作成した Issue を Doing に動かす。
 
-(TBW)
+Pipelines > Release > Create new release  
+テンプレートに [Azure App Service deployment] を指定する。  
+Artifacts には先ほど作成したビルドパイプラインを指定する。  
+Stage のタスクにてデプロイ先となる Azure サブスクリプションと App Service 名を指定する。
+
+リリースパイプラインが用意できたらソースコードの変更を行い、 master ブランチにコミットする。  
+自動ビルドおよび自動デプロイが終了し、アプリケーションに変更が正しく反映されていることを確認したら Issue を Done に動かすこと。
 
 ## チーム開発
 複数人での DevOps を体験するために複数人のチームを組み、一人の Organization に他のメンバーを招待し、本ハンズオンを再度実施してみる。
