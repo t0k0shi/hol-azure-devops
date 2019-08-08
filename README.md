@@ -84,7 +84,7 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
         - Path to project : `**/*.csproj`
         - Arguments : `--configuration Release`
     - `dotnet publish`
-        - Arguments : `--configuration Release --output $(build.artifactstagingdirectory) -r win-x64 --self-contained true`
+        - Arguments : `--configuration Release --output $(build.artifactstagingdirectory) -r win-x86,win-x64 --self-contained true`
     - Publish build artifacts
         - 設定変更不要
 1. master ブランチへのプッシュをトリガーとする
