@@ -160,6 +160,10 @@ Stage のタスクにてデプロイ先となる Azure サブスクリプショ�
 ## チーム開発
 複数人での DevOps を体験するために複数人のチームを組み、一人の Organization に他のメンバーを招待し、本ハンズオンを再度実施してみる。
 
+## Microsoft Learn の Azure DevOps ラーニングパス
+- [Azure DevOps ラーニング パスでアプリケーションをビルドする - Learn | Microsoft Docs](https://docs.microsoft.com/ja-jp/learn/paths/build-applications-with-azure-devops/)
+- [DevOps プラクティスのラーニング パスを発展させる - Learn | Microsoft Docs](https://docs.microsoft.com/ja-jp/learn/paths/evolve-your-devops-practices/)
+
 ## より本格的に Azure DevOps を使ってみる
 [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/) を使用して、自身の Organization にデモデータを作成してみる。  
 Boards, Repos, Pipelines にどのようなデータや定義が用意されているかを確認する。
