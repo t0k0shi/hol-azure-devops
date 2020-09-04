@@ -1,23 +1,27 @@
 # Azure DevOps を使用したハンズオン
+
 ## Azure DevOps とは
+
 [Azure DevOps Services | Microsoft Azure](https://azure.microsoft.com/ja-jp/services/devops/)
 
-## Azure DevOps Projects リソースの作成
+## Azure DevOps Starter リソースの作成
+
 **まずはサンプルのプロジェクトを作ってみましょう。**
 
-[Microsoft Azure ポータル](https://portal.azure.com/)にサインインする。  
+[Microsoft Azure ポータル](https://portal.azure.com/)にサインインする。
 このときハンズオンで使用するメールアドレスおよびパスワードでサインインすること。
 
-下記のドキュメントを参考に Azure DevOps Projects リソースを作成する。  
+下記のドキュメントを参考に Azure DevOps Starter リソースを作成する。
 入力項目はユニークである必要があるためチェックマークがつく内容を入力する必要がある。  
-[クイック スタート:Azure DevOps Projects を使用して .NET 用 CI/CD パイプラインを作成する | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops-project/azure-devops-project-aspnet-core)  
+
+[クイック スタート:Azure DevOps Start er を使用して .NET 用 CI/CD パイプラインを作成する | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops-project/azure-devops-project-aspnet-core)
 ※「Azure DevOps と Azure サブスクリプションを構成する」までを行う。
 
 ![01.png](./images/01.png)
 
-作成された Azure DevOps Projects リソースでは、サンプルのソースコードを用いた各種パイプラインや Web サーバーが構築されるため、 Web ページにアクセスし表示を確認する。
-
 ![02.png](./images/02.png)
+
+作成された Azure DevOps Starter リソースでは、サンプルのソースコードを用いた各種パイプラインや Web サーバーが構築されるため、 Web ページにアクセスし表示を確認する。
 
 ## 独自のプロジェクトの作成
 下記の構成で Azure DevOps Projects リソースを作成する。
