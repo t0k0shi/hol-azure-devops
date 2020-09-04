@@ -14,7 +14,8 @@
 下記のドキュメントを参考に Azure DevOps Starter リソースを作成する。
 入力項目はユニークである必要があるためチェックマークがつく内容を入力する必要がある。  
 
-[クイック スタート:Azure DevOps Start er を使用して .NET 用 CI/CD パイプラインを作成する | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops-project/azure-devops-project-aspnet-core)
+- [クイック スタート:Azure DevOps Start er を使用して .NET 用 CI/CD パイプラインを作成する | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/devops-project/azure-devops-project-aspnet-core)
+
 ※「Azure DevOps と Azure サブスクリプションを構成する」までを行う。
 
 ![01.png](./images/01.png)
@@ -24,20 +25,36 @@
 作成された Azure DevOps Starter リソースでは、サンプルのソースコードを用いた各種パイプラインや Web サーバーが構築されるため、 Web ページにアクセスし表示を確認する。
 
 ## 独自のプロジェクトの作成
-下記の構成で Azure DevOps Projects リソースを作成する。
+
+新たに下記の構成で Azure DevOps Starter リソースを作成する。
+
+![03-01.png](./images/03-01.png)
 
 - Bring your own code
+
+![03-02.png](./images/03-02.png)
+
 - Code repository : Other Git
-    - Repository URL : https://github.com/alterbooth/hol-aspnetcore-sample.git
+  - Repository URL : <https://github.com/alterbooth/hol-aspnetcore-sample.git>
     - Branch : master
     - Private repository : No
+
+![03-03.png](./images/03-03.png)
+
 - Is app Dockerized : No
 - Select application framework : ASP.NET Core
+
+![03-04.png](./images/03-04.png)
+
 - Windows Web App
+
+![01.png](./images/01.png)
+
 - 上記以外の項目はチェックマークがつく内容を入力すること
 
 ### 設定の確認
-作成した Azure DevOps Projects リソースに移り [Project homepage] から Azure DevOps にアクセスする。  
+
+作成した Azure DevOps Starter リソースに移り [Project homepage] から Azure DevOps にアクセスする。  
 プロジェクトの設定にて下記の機能が有効になっていることを確認する。
 
 - Boards
@@ -46,7 +63,7 @@
 - Artifacts
 - Test plans
 
-![03.png](./images/03.png)
+![03-05.png](./images/03-05.png)
 
 ## Issue1 : ソースコードの準備
 ### チケットの作成
