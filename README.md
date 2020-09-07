@@ -65,40 +65,82 @@
 
 ![03-05.png](./images/03-05.png)
 
-## Issue1 : ソースコードの準備
-### チケットの作成
-Boards のカンバンにアクセスし、下記の Issue を作成する。
+## Work Items の作成
 
-- 列 : `To Do`
-- タイトル : `Gitリポジトリをインポートする`
-- アサイン : 自分
+### Feature の作成
 
-### 作業の開始
-先ほど作成した Issue を Doing に動かす。  
+Boards > Work items > New Work Item > Feature を作成する。
+
+![New Work Item](images/new-work-item.png)
+
+![Add Feature](images/add-feature.png)
+
+- Title : `Azure DevOps ハンズオン`
+- Assign : 自分
+- Iteration : Iteration 1
+
+### User Story の作成
+
+Boards から先ほど作成した Feature を開く。
+
+![Add User Story](images/add-user-story.png)
+
+下記の User Story を追加する。
+
+- `Azure Web App にコードをデプロイする`
+
+先ほど作成した User Story が Boards に表示されていることを確認する。
+
+![Boards Stories](images/boards-stories.png)
+
+### Task の作成
+
+先ほど作成した User Story に Task を追加する。
+
+![Add Task](images/add-task.png)
+
+- `Gitリポジトリをインポートする`
+- `ビルドパイプラインを作成する`
+- `ソースコードを変更する`
+- `自動リリースを構成する`
+
+先ほど作成した Tasks が Sprints に表示されていることを確認する。
+
+![Sprints](images/sprints.png)
+
+## User Story : Azure Web App にコードをデプロイする
+
+先ほど作成した User Story を Active に動かす。
+
+![Active User Story](images/active-user-story.png)
+
+### Task 1 : Gitリポジトリをインポートする
+
+Task を Active に動かす。  
+
+![Active Task](images/active-task.png)
+
 Repos にアクセスし、下記の Github リポジトリをインポートする。  
-https://github.com/alterbooth/hol-aspnetcore-sample.git
+
+<https://github.com/alterbooth/hol-aspnetcore-sample.git>
 
 ![04.png](./images/04.png)
 
-インポートに成功したら Issue を Done に動かすこと。
+インポートに成功したら Task を Closed に動かすこと。
 
-## Issue2 : パイプラインの作成
-### チケットの作成
-Boards のカンバンにアクセスし、下記の Issue を作成する。
+![Closed Task](images/closed-task.png)
 
-- 列 : `To Do`
-- タイトル : `ビルドパイプラインを作成する`
-- アサイン : 自分
+### Task 2 : ビルドパイプラインを作成する
 
-### 作業の開始
-先ほど作成した Issue を Doing に動かす。  
+Task を Active に動かす。
+
 Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラインを作成する。
 
 1. [New pipeline] をクリックする
-1. [Use the classic editor] をクリックする
-1. インポートしたリポジトリをソースに指定する
-1. テンプレートは選ばず [Empty job] をクリックする
-1. 下記のタスクを追加する
+2. [Use the classic editor] をクリックする
+3. インポートしたリポジトリをソースに指定する
+4. テンプレートは選ばず [Empty job] をクリックする
+5. 下記のタスクを追加する
     - `dotnet restore`
         - Path to project : `**/*.csproj`
     - `dotnet build`
@@ -108,16 +150,17 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
         - Arguments : `--configuration Release --output $(build.artifactstagingdirectory) -r win-x86 --self-contained true`
     - Publish build artifacts
         - 設定変更不要
-1. master ブランチへのプッシュをトリガーとする
+6. master ブランチへのプッシュをトリガーとする
     - [Triggers] > [Enable continuous integration]
-1. パイプラインを保存する
+7. パイプラインを保存する
     - [Save & queue] > [save]
-1. [Queue] をクリックしパイプラインを手動実行する
-1. ビルドパイプラインが成功したことを確認する
+8. [Queue] をクリックしパイプラインを手動実行する
+9. ビルドパイプラインが成功したことを確認する
 
 ![05.png](./images/05.png)
 
-### 成果物の確認
+**成果物の確認**
+
 成功したビルドパイプラインの結果にアクセスし Artifacts から Zip ファイルをダウンロードする。
 
 ![06.png](./images/06.png)
@@ -125,50 +168,41 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 ダウンロードしたZipファイルを展開し `RazorPagesMovie.exe` を実行すると Web サーバーが起動する。  
 `http://localhost:5000/movies` にアクセスし、データの参照や登録ができることを確認する。
 
-アプリケーションの動作確認を行ったら Issue を Done に動かすこと。
+アプリケーションの動作確認を行ったら Task を Closed に動かすこと。
 
-## Issue3 : ソースコードの変更
-### チケットの作成
-Boards のカンバンにアクセスし、下記の Issue を作成する。
+### Task 3 : ソースコードを変更する
 
-- 列 : `To Do`
-- タイトル : `ソースコードを変更する`
-- アサイン : 自分
+**開発作業を行う**
 
-### 作業の開始
-#### 開発作業を行う
-先ほど作成した Issue を Doing に動かす。  
-Issue を開き [Create a new branch] からブランチを作成する。
+Task を Active に動かす。
+
+Task を開き [Create a new branch] からブランチを作成する。
 
 作成したブランチにてファイルを修正し、変更をコミットする。  
-このときコミットメッセージに `#3` を含め [Work items to link] にて Issue3 を指定すること。
+このときコミットメッセージに `#<Task ID>` を含め [Work items to link] にて Task 3 を指定すること。
 
-再び Issue3 にアクセスし、 Issue とブランチが紐付けされていることを確認する。
+再び Task 3 にアクセスし、 Task とブランチが紐付けされていることを確認する。
 
-#### プルリクエストを作成する
-Issue3 を開き [Create a pull request] から master ブランチへのプルリクエストを作成する。  
+**プルリクエストを作成する**
+
+Task 3 を開き [Create a pull request] から master ブランチへのプルリクエストを作成する。  
 このとき自分をレビューアーに指定すること。
 
 プルリクエストにて差分の確認を行い、承認およびマージを実行する。
 
-#### ビルドパイプラインを確認する
-Issue2 にて作成したパイプラインにアクセスし、プルリクエストのマージをトリガーとしたビルドパイプラインが自動実行されたことを確認する。  
+**ビルドパイプラインを確認する**
+
+Task 2 にて作成したパイプラインにアクセスし、プルリクエストのマージをトリガーとしたビルドパイプラインが自動実行されたことを確認する。  
 ビルドパイプラインにてエラーが発生した場合は必要な修正を行うこと。
 
-### 成果物の確認
-Issue2 と同様に、ビルドパイプラインから Zip ファイルをダウンロードし、展開する。  
-アプリケーションを実行し変更が正しく反映されていることを確認したら Issue を Done に動かすこと。
+**成果物の確認**
 
-## Issue4 : 自動リリースの構成
-### チケットの作成
-Boards のカンバンにアクセスし、下記の Issue を作成する。
+Task 2 と同様に、ビルドパイプラインから Zip ファイルをダウンロードし、展開する。  
+アプリケーションを実行し変更が正しく反映されていることを確認したら Task を Closed に動かすこと。
 
-- 列 : `To Do`
-- タイトル : `Azure Web Appにデプロイする`
-- アサイン : 自分
+### Task 4 : 自動リリースを構成する
 
-### 作業の開始
-先ほど作成した Issue を Doing に動かす。
+Task を Active に動かす。
 
 Pipelines > Release > Create new release  
 テンプレートに [Azure App Service deployment] を指定する。  
@@ -176,18 +210,22 @@ Artifacts には先ほど作成したビルドパイプラインを指定する�
 Stage のタスクにてデプロイ先となる Azure サブスクリプションと App Service 名を指定する。
 
 リリースパイプラインが用意できたらソースコードの変更を行い、 master ブランチにコミットする。  
-自動ビルドおよび自動デプロイが終了し、アプリケーションに変更が正しく反映されていることを確認したら Issue を Done に動かすこと。
+自動ビルドおよび自動デプロイが終了し、アプリケーションに変更が正しく反映されていることを確認したら Task を Closed に動かすこと。
 
 ## チーム開発
+
 複数人での DevOps を体験するために複数人のチームを組み、一人の Organization に他のメンバーを招待し、本ハンズオンを再度実施してみる。
 
 ## Microsoft Learn の Azure DevOps ラーニングパス
+
 - [Azure DevOps ラーニング パスでアプリケーションをビルドする - Learn | Microsoft Docs](https://docs.microsoft.com/ja-jp/learn/paths/build-applications-with-azure-devops/)
 - [DevOps プラクティスのラーニング パスを発展させる - Learn | Microsoft Docs](https://docs.microsoft.com/ja-jp/learn/paths/evolve-your-devops-practices/)
 
 ## より本格的に Azure DevOps を使ってみる
+
 [Azure DevOps Demo Generator](https://azuredevopsdemogenerator.azurewebsites.net/) を使用して、自身の Organization にデモデータを作成してみる。  
 Boards, Repos, Pipelines にどのようなデータや定義が用意されているかを確認する。
 
 ## 後片付け
+
 ハンズオンで作成した全てのリソースグループを削除する。
