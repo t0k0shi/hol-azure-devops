@@ -161,9 +161,10 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 
 **成果物の確認**
 
-成功したビルドパイプラインの結果にアクセスし Artifacts から Zip ファイルをダウンロードする。
+成功したビルドパイプラインの結果にアクセスし [published] から Zip ファイルをダウンロードする。
 
-![06.png](./images/06.png)
+![Pipelines Build Summary](images/pipelines-build-summary.png)
+![Pipelines Build Artifacts](images/pipelines-build-artifacts.png)
 
 ダウンロードしたZipファイルを展開し `RazorPagesMovie.exe` を実行すると Web サーバーが起動する。  
 `http://localhost:5000/movies` にアクセスし、データの参照や登録ができることを確認する。
@@ -176,7 +177,7 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 
 Task を Active に動かす。
 
-Task を開き [Create a new branch] からブランチを作成する。
+Task を開き [Create a branch] からブランチを作成する。
 
 作成したブランチにてファイルを修正し、変更をコミットする。  
 このときコミットメッセージに `#<Task ID>` を含め [Work items to link] にて Task 3 を指定すること。
@@ -204,10 +205,21 @@ Task 2 と同様に、ビルドパイプラインから Zip ファイルをダ�
 
 Task を Active に動かす。
 
-Pipelines > Release > Create new release  
+Pipelines > Release > New release pipeline
+
+![New Release Pipeline](images/new-release-pipeline.png)
+
 テンプレートに [Azure App Service deployment] を指定する。  
+
+![New Release Pipeline Template](images/new-release-pipeline-template.png)
+
 Artifacts には先ほど作成したビルドパイプラインを指定する。  
+
+![New Release Pipeline Artifacts](images/new-release-pipeline-artifacts.png)
+
 Stage のタスクにてデプロイ先となる Azure サブスクリプションと App Service 名を指定する。
+
+![New Release Pipeline Tasks](images/new-release-pipeline-tasks.png)
 
 リリースパイプラインが用意できたらソースコードの変更を行い、 master ブランチにコミットする。  
 自動ビルドおよび自動デプロイが終了し、アプリケーションに変更が正しく反映されていることを確認したら Task を Closed に動かすこと。
