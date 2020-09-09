@@ -103,6 +103,7 @@ Boards から先ほど作成した Feature を開く。
 - `ビルドパイプラインを作成する`
 - `ソースコードを変更する`
 - `自動リリースを構成する`
+- `Blue-Greenデプロイメント`
 
 先ほど作成した Tasks が Sprints に表示されていることを確認する。
 
@@ -116,7 +117,7 @@ Boards から先ほど作成した Feature を開く。
 
 ### Task 1 : Gitリポジトリをインポートする
 
-Task を Active に動かす。  
+Task を Active に動かす。
 
 ![Active Task](images/active-task.png)
 
@@ -205,6 +206,9 @@ Task 2 と同様に、ビルドパイプラインから Zip ファイルをダ�
 
 Task を Active に動かす。
 
+
+**パイプラインの設定**
+
 Pipelines > Release > New release pipeline
 
 ![New Release Pipeline](images/new-release-pipeline.png)
@@ -221,8 +225,68 @@ Stage のタスクにてデプロイ先となる Azure サブスクリプショ�
 
 ![New Release Pipeline Tasks](images/new-release-pipeline-tasks.png)
 
+**デプロイを確認する**
+
 リリースパイプラインが用意できたらソースコードの変更を行い、 master ブランチにコミットする。  
 自動ビルドおよび自動デプロイが終了し、アプリケーションに変更が正しく反映されていることを確認したら Task を Closed に動かすこと。
+
+### Task 5 : Blue-Green デプロイメント
+
+Task を Active に動かす。
+
+**スロットを追加する**
+
+Azure ポータルに戻り、Azure DevOps Starter リソースの \[App Service\] から Web App リソースへ移動します。
+
+![02.png](./images/02.png)
+
+![Web App Overview](images/webapp-overview.png)
+
+\[Deployment Slot\] からスロットを追加します。
+
+![Add Slot](images/webapp-add-slot.png)
+
+追加したスロットを確認します。
+
+![Added Slot](images/webapp-added-slot.png)
+
+追加したスロットの Web ページにアクセスし表示を確認する。
+
+![Staging Web Site](images/webapp-stg-slot-web.png)
+
+**スロットにデプロイする**
+
+Task 4 の自動リリースの設定を変更して、スロットを使う構成にリリース定義を変更します。
+
+Task 4 で作成したリリース定義を選択して \[Edit\] から変更します。
+![Edit Release Pipeline](images/edit-release-pipeline.png)
+
+\[Delete\] で Stage を削除します。
+![Edit Stage](images/edit-release-pipeline-edit-stage.png)
+
+\[New stage\] で新たに Stage を作成します。
+![Add Stage](images/edit-release-pipeline-add-stage.png)
+
+\[Search\] から "slot" で検索し、 テンプレートに \[Azure App Service deployment with slot\] を指定します。
+![New Release Pipeline Template Web App Slot Deploy](images/new-release-pipeline-template-webapp-slot.png)
+
+Stage のタスクにてデプロイ先となる Azure サブスクリプションと App Service 名、リソースグループ名、スロット名を指定する。
+
+![New Release Pipeline Web App Slot Tasks](images/new-release-pipeline-template-webapp-slot-task.png)
+
+**デプロイを確認する**
+
+リリースパイプラインが用意できたらソースコードの変更を行い、 master ブランチにコミットする。
+
+自動ビルドおよび自動デプロイが終了し、アプリケーションに変更が正しく反映されていることを確認する。
+
+追加したスロットの Web ページにアクセスし、**ソースコードを変更する前の表示**を確認したら Task を Closed に動かすこと。
+
+**参考ドキュメント**
+
+- [デプロイのベスト プラクティス - Azure App Service | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/app-service/deploy-best-practices#use-deployment-slots)
+- [ステージング環境を設定する - Azure App Service | Microsoft Docs](https://docs.microsoft.com/ja-jp/azure/app-service/deploy-staging-slots)
+- [App Service のデプロイ スロットを使ってテストとロールバック用に Web アプリのデプロイをステージングする - Learn | Microsoft Docs](https://docs.microsoft.com/ja-jp/learn/modules/stage-deploy-app-service-deployment-slots/)
 
 ## チーム開発
 
