@@ -142,12 +142,14 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 3. インポートしたリポジトリをソースに指定する
 4. テンプレートは選ばず [Empty job] をクリックする
 5. 下記のタスクを追加する
-    - `dotnet restore`
-        - Path to project : `**/*.csproj`
-    - `dotnet build`
-        - Path to project : `**/*.csproj`
+    - dotnet restore
+        - Path to project : `RazorPagesMovie/*.csproj`
+    - dotnet build
+        - Path to project : `RazorPagesMovie/*.csproj`
         - Arguments : `--configuration Release`
-    - `dotnet publish`
+    - dotnet publish
+        - Publish web projects : false
+        - Path to project : `RazorPagesMovie/*.csproj`
         - Arguments : `--configuration Release --output $(build.artifactstagingdirectory) -r win-x86 --self-contained true`
     - Publish build artifacts
         - 設定変更不要
@@ -167,9 +169,8 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 ![Pipelines Build Summary](images/pipelines-build-summary.png)
 ![Pipelines Build Artifacts](images/pipelines-build-artifacts.png)
 
-- ダウンロードしたZipファイルを展開し `RazorPagesMovie.exe` を実行すると Web サーバーが起動する。  
-- `http://localhost:5000/movies` にアクセスし、データの参照や登録ができることを確認する。
-- アプリケーションの動作確認を行ったら Task を Closed に動かすこと。
+- ダウンロードしたZipファイルを展開する。
+- 成果物の確認を行ったら Task を Closed に動かすこと。
 
 ### Task 3 : ソースコードを変更する
 
@@ -193,14 +194,13 @@ Task 3 を開き [Create a pull request] から master ブランチへのプル�
 
 **ビルドパイプラインを確認する**
 
-Task 2 にて作成したパイプラインにアクセスし、プルリクエストのマージをトリガーとしたビルドパイプラインが自動実行されたことを確認する。  
-ビルドパイプラインにてエラーが発生した場合は必要な修正を行うこと。
+- Task 2 にて作成したパイプラインにアクセスし、プルリクエストのマージをトリガーとしたビルドパイプラインが自動実行されたことを確認する。  
+- ビルドパイプラインにてエラーが発生した場合は必要な修正を行うこと。
 
 **成果物の確認**
 
 - Task 2 と同様に、ビルドパイプラインから Zip ファイルをダウンロードし、展開する。  
-- アプリケーションを実行し変更が正しく反映されていることを確認する。
-- 確認を行ったら、Task を Closed に動かす。
+- 成果物の確認を行ったら Task を Closed に動かすこと。
 
 ### Task 4 : 自動リリースを構成する
 
@@ -223,6 +223,16 @@ Artifacts には先ほど作成したビルドパイプラインを指定する�
 Stage のタスクにてデプロイ先となる Azure サブスクリプションと App Service 名を指定する。
 
 ![New Release Pipeline Tasks](images/new-release-pipeline-tasks.png)
+
+\[Deploy Azure App Service\] タスクの詳細にて、下記の設定をする。
+
+- Additional Deployment Options
+  - Selected deployment method : true
+  - Deployment method : Web Deploy
+
+![Task Deploy Azure App Service](images/new-release-pipeline-tasks-app.png)
+
+最後に \[Save\] で保存する。
 
 **デプロイを確認する**
 
@@ -273,6 +283,16 @@ Task 4 で作成したリリース定義を選択して \[Edit\] から変更し
 Stage のタスクにてデプロイ先となる Azure サブスクリプションと App Service 名、リソースグループ名、スロット名を指定する。
 
 ![New Release Pipeline Web App Slot Tasks](images/new-release-pipeline-template-webapp-slot-task.png)
+
+\[Deploy Azure App Service to Slot\] タスクの詳細にて、下記の設定をする。
+
+- Additional Deployment Options
+  - Selected deployment method : true
+  - Deployment method : Web Deploy
+
+![Slot Task Deploy Azure App Service](images/new-release-pipeline-template-webapp-slot-task-app.png)
+
+最後に \[Save\] で保存する。
 
 **デプロイを確認する**
 
