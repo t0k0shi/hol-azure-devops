@@ -101,6 +101,7 @@ Boards から先ほど作成した Feature を開く。
 
 - `Gitリポジトリをインポートする`
 - `ビルドパイプラインを作成する`
+- `単体テストを行う`
 - `ソースコードを変更する`
 - `自動リリースを構成する`
 - `Blue-Greenデプロイメント`
@@ -172,7 +173,28 @@ Pipelines > Builds にアクセスし、 ASP.NET Core のビルドパイプラ�
 - ダウンロードしたZipファイルを展開する。
 - 成果物の確認を行ったら Task を Closed に動かすこと。
 
-### Task 3 : ソースコードを変更する
+### Task 3 : 単体テストを行う
+
+Task を Active に動かす。
+
+Task 2 にて作成したパイプラインを変更して、単体テストのパイプラインを追加する。Task 2 で作成したパイプライン定義を選択して \[Edit\] から変更します。
+
+1. 下記のタスクを `dotnet build` と `dotnet publish` の間に追加する
+    - dotnet test
+        - Path to project : `RazorPagesMovie.Test/*.csproj`
+        - Arguments : `--configuration Release`
+2. パイプラインを保存する
+    - [Save & queue] > [save]
+3. [Queue] をクリックしパイプラインを手動実行する
+4. ビルドパイプラインが成功したことを確認する
+
+![Add dotnet test](images/add-dotnet-test.png)
+
+![dotnet test job](images/pipeline-jobs-run-dotnet-test.png)
+
+確認を行ったら、Task を Closed に動かす。
+
+### Task 4 : ソースコードを変更する
 
 **開発作業を行う**
 
@@ -181,13 +203,13 @@ Task を Active に動かす。
 Task を開き [Create a branch] からブランチを作成する。
 
 作成したブランチにてファイルを修正し、変更をコミットする。  
-このときコミットメッセージに `#<Task ID>` を含め [Work items to link] にて Task 3 を指定すること。
+このときコミットメッセージに `#<Task ID>` を含め [Work items to link] にて Task 4 を指定すること。
 
-再び Task 3 にアクセスし、 Task とブランチが紐付けされていることを確認する。
+再び Task 4 にアクセスし、 Task とブランチが紐付けされていることを確認する。
 
 **プルリクエストを作成する**
 
-Task 3 を開き [Create a pull request] から master ブランチへのプルリクエストを作成する。  
+Task 4 を開き [Create a pull request] から master ブランチへのプルリクエストを作成する。  
 このとき自分をレビューアーに指定すること。
 
 プルリクエストにて差分の確認を行い、承認およびマージを実行する。
@@ -202,7 +224,7 @@ Task 3 を開き [Create a pull request] から master ブランチへのプル�
 - Task 2 と同様に、ビルドパイプラインから Zip ファイルをダウンロードし、展開する。  
 - 成果物の確認を行ったら Task を Closed に動かすこと。
 
-### Task 4 : 自動リリースを構成する
+### Task 5 : 自動リリースを構成する
 
 Task を Active に動かす。
 
@@ -240,7 +262,7 @@ Stage のタスクにてデプロイ先となる Azure サブスクリプショ�
 - 自動ビルドおよび自動デプロイが終了し、アプリケーションに変更が正しく反映されていることを確認する。
 - 確認を行ったら、Task を Closed に動かす。
 
-### Task 5 : Blue-Green デプロイメント
+### Task 6 : Blue-Green デプロイメント
 
 Task を Active に動かす。
 
@@ -266,9 +288,9 @@ Azure ポータルに戻り、Azure DevOps Starter リソースの \[App Service
 
 **スロットにデプロイする**
 
-Task 4 の自動リリースの設定を変更して、スロットを使う構成にリリース定義を変更します。
+Task 5 の自動リリースの設定を変更して、スロットを使う構成にリリース定義を変更します。
 
-Task 4 で作成したリリース定義を選択して \[Edit\] から変更します。
+Task 5 で作成したリリース定義を選択して \[Edit\] から変更します。
 ![Edit Release Pipeline](images/edit-release-pipeline.png)
 
 \[Delete\] で Stage を削除します。
