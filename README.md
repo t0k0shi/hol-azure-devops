@@ -242,6 +242,10 @@ Artifacts には先ほど作成したビルドパイプラインを指定する�
 
 ![New Release Pipeline Artifacts](images/new-release-pipeline-artifacts.png)
 
+ビルドパイプラインの完了をリリースパイプラインのトリガーとする。
+
+![New Release Pipeline Trigger](images/new-release-pipeline-trigger.png)
+
 Stage のタスクにてデプロイ先となる Azure サブスクリプションと App Service 名を指定する。
 
 ![New Release Pipeline Tasks](images/new-release-pipeline-tasks.png)
