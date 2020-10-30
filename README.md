@@ -124,7 +124,7 @@ Task を Active に動かす。
 
 Repos にアクセスし、下記の Github リポジトリをインポートする。  
 
-<https://github.com/alterbooth/hol-aspnetcore-sample.git>
+<https://github.com/t0k0shi/hol-aspnetcore-sample.git>
 
 ![04.png](./images/04.png)
 
