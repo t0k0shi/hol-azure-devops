@@ -35,7 +35,7 @@
 ![03-02.png](./images/03-02.png)
 
 - Code repository : Other Git
-  - Repository URL : <https://github.com/alterbooth/hol-aspnetcore-sample.git>
+  - Repository URL : <https://github.com/t0k0shi/hol-aspnetcore-sample.git>
     - Branch : master
     - Private repository : No
 
